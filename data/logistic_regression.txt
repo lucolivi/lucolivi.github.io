@@ -1,0 +1,3 @@
+Logistic Regression
+https://en.wikipedia.org/wiki/Logistic_regression
+linear_algebra.txt

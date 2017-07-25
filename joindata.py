@@ -10,7 +10,7 @@ def rlt(text):
     """Function to remove line termination chars."""
     return text.replace("\n", "").replace("\r", "")
 
-for i, f in enumerate(os.listdir("data")):
+for i, f in enumerate(os.listdir("data"), 1):
     if f[-4:] != ".txt":
         continue
 
@@ -35,6 +35,10 @@ for i, f in enumerate(os.listdir("data")):
 
         #Populate links
         for link in lines[2:]:
+            #Skip data initing with #
+            if link[0] == "#":
+                continue
+
             links.append([
                 f,
                 rlt(link)

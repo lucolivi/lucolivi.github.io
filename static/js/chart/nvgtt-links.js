@@ -80,7 +80,7 @@ NvgttChart.Links = new function() {
 	var refreshLinks = function() {
 		//Match links with DOMs by the links ids merging
 		var linksSelection = NvgttChart.Container.select().selectAll(".nvgtt-link")
-			.data(links, function(d) { return d.sourceId + d.targetId; });
+			.data(links, function(d) { return d.sourceId + " " + d.targetId; });
 
 		//Create DOM for new links
 		linksSelection.enter().insert("g", ":first-child")
