@@ -1,0 +1,4 @@
+Neural Turing Machines
+https://distill.pub/2016/augmented-rnns/
+rnn.txt
+memory.txt
