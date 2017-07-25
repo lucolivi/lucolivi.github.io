@@ -1,0 +1,4 @@
+DCGAN
+https://medium.com/@dmonn/generating-faces-with-deep-convolutional-gans-c0dac44c8d49
+gans.txt
+convnets.txt

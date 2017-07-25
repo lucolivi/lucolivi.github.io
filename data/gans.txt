@@ -1,0 +1,3 @@
+Generative Adversarial Networks
+https://en.wikipedia.org/wiki/Generative_adversarial_networks
+nn.txt
