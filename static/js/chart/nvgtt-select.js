@@ -16,10 +16,10 @@ NvgttChart.Select = new function() {
 
     function focusAll() {
         //Unfocus all nodes
-        d3.selectAll(".nvgtt-block").style("opacity", 1);
+        d3.selectAll(".nvgtt-block").style("opacity", 0.95);
 
         //Unfocus all links
-        d3.selectAll(".nvgtt-link").style("opacity", 1);        
+        d3.selectAll(".nvgtt-link").style("opacity",0.95);        
     }
 
     function deselectAll() {
@@ -54,7 +54,7 @@ NvgttChart.Select = new function() {
     }
 
     function recurseHighlightBlocks(block) {
-        block.d3Select.style("opacity", 1);  
+        block.d3Select.style("opacity", 0.95);  
 
         var blockTargetLinks = NvgttChart.Links.get({ blockGlobalId: block.globalId, target: true });
 
@@ -62,7 +62,7 @@ NvgttChart.Select = new function() {
         for(var i = 0; i < blockTargetLinks.length; i++) {
             var currLink = blockTargetLinks[i];
 
-            currLink.d3Select.style("opacity", 1);   
+            currLink.d3Select.style("opacity", 0.95);   
 
             //recurse this function on the target block
             recurseHighlightBlocks(NvgttChart.Blocks.get({ globalId: currLink.sourceId }));            

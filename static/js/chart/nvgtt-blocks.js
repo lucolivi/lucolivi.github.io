@@ -76,6 +76,7 @@ NvgttChart.Blocks = new function() {
 	var refreshBlocks = function() {
 
 		//Match blocks with DOMs by the blocks global ids
+		// var blocksSelection = NvgttChart.Container.select().selectAll(".nvgtt-block")
 		var blocksSelection = NvgttChart.Container.select().selectAll(".nvgtt-block")
 			.data(blocks, function(d) { return d.globalId; });
 
@@ -169,7 +170,8 @@ NvgttChart.Blocks = new function() {
 				"h-" + d.width + "z";*/
 			})
 			.attr("fill", function(d) {
-				return d.bgcolor || "#fff";
+				return "#725d68";
+				// return d.bgcolor || "#fff";
 			});
 
 		//Set position of input and output symbols
@@ -246,32 +248,6 @@ NvgttChart.Blocks = new function() {
 			xPos += column.width + 150;
 		}
 
-
-		//Translate DOM according to its columns
-		//var nextY = [];
-		/*blocksSelection.each(function(d) {
-			var column = d.GetColumn();
-
-			if(nextY[column] == undefined)
-				nextY[column] = 10;
-				
-			var newX = column*500 + 10;
-			var newY = nextY[column];
-
-			nextY[column] += 60;
-					
-			if(d.x != newX || d.y != newY) {
-
-				d.x = newX;
-				d.y = newY;
-
-				//Update node position
-				d.d3Select//.transition().duration(1000)
-					.attr("transform", "translate(" + d.x + " " + d.y + ")");	
-
-				eventHandler.fire("move", d);
-			}
-		});*/
 	}
 
 	var createDOMs = function(createSelection) {
@@ -339,36 +315,14 @@ NvgttChart.Blocks = new function() {
 		//blockGroup.call(nodeDrag);
 	}
 
-	//Object to handle nodes drag
-	var nodeDrag = d3.behavior.drag()
-		.origin(function(d) { return d; })
-
-		.on("drag", function(d) {
-
-			if(d.x != d3.event.x || d.y != d3.event.y) {
-
-				d.x = d3.event.x;
-				d.y = d3.event.y;
-
-				//Update node position
-				d.d3Select.attr("transform", "translate(" + d.x + " " + d.y + ")");	
-
-				eventHandler.fire("drag", d);
-				eventHandler.fire("move", d);
-			}
-		})
-
-		.on("dragend", function(d) {
-			eventHandler.fire("dragend", d);	
-		});
-
-
 
 	//Private Class
 	var NvgttBlock = function(blockData) {
 		var nvgttBlock = this;
 
 		nvgttBlock.name = blockData.name;
+
+		nvgttBlock.link = blockData.link;
 
 		nvgttBlock.globalId = blockData.globalId;
 		nvgttBlock.localId = blockData.localId;

@@ -3,85 +3,41 @@
         <meta charset="utf8">
         <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
         <link rel="stylesheet" href="static/css/box-container.css"/>
-        <link rel="stylesheet" href="static/css/chart-style.css"/>  
+        <link rel="stylesheet" href="static/css/chart-style.css"/>
+        <style>
+            body {
+                background-color: #ddd;
+            }
+
+        </style>  
     </head>
     <body>
     
-        <svg class="svg-container" width="100%" height="100%">
-        <defs>
+         <svg class="svg-container" width="100%" height="100%">
 
-            <linearGradient id="linGrad" x1="0%" y1="0%" x2="100%" y2="0%">
-                <stop offset="0%" style="stop-color:#666;stop-opacity:.0" />
-                <stop offset="100%" style="stop-color:#bbb;stop-opacity:.5" />
-            </linearGradient>
-
-            <radialGradient id="radGrad" cx="50%" cy="50%" r="50%" fx="50%" fy="50%">
-                <stop offset="0%" style="stop-color:rgb(255,255,255);stop-opacity:0" />
-                <stop offset="100%" style="stop-color:rgb(0,0,255);stop-opacity:1" />
-            </radialGradient>
-
-            <!-- Material Design Shadows -->
-
-            <filter id="md-shadow1" height="150%">
-                <feGaussianBlur in="SourceAlpha" stdDeviation="1"/> <!-- stdDeviation is how much to blur -->
-                <feOffset dx="0" dy="1" result="offsetblur"/> <!-- how much to offset -->
-                <feComponentTransfer>   
-                    <feFuncA type="linear" slope=".4"/>
-                </feComponentTransfer>
-                <feMerge> 
-                    <feMergeNode/> <!-- this contains the offset blurred image -->
-                    <feMergeNode in="SourceGraphic"/> <!-- this contains the element that the filter is applied to -->
-                </feMerge>
-            </filter>
-
-            <filter id="md-shadow2" height="150%">
-                <feGaussianBlur in="SourceAlpha" stdDeviation="2"/> <!-- stdDeviation is how much to blur -->
-                <feOffset dx="0" dy="2" result="offsetblur"/> <!-- how much to offset -->
-                <feComponentTransfer>   
-                    <feFuncA type="linear" slope=".4"/>
-                </feComponentTransfer>
-                <feMerge> 
-                    <feMergeNode/> <!-- this contains the offset blurred image -->
-                    <feMergeNode in="SourceGraphic"/> <!-- this contains the element that the filter is applied to -->
-                </feMerge>
-            </filter>
-
-            <filter id="md-shadow3" height="200%">
-                <feGaussianBlur in="SourceAlpha" stdDeviation="2"/> <!-- stdDeviation is how much to blur -->
-                <feOffset dx="0" dy="4" result="offsetblur"/> <!-- how much to offset -->
-                <feComponentTransfer>   
-                    <feFuncA type="linear" slope=".4"/>
-                </feComponentTransfer>
-                <feMerge> 
-                    <feMergeNode/> <!-- this contains the offset blurred image -->
-                    <feMergeNode in="SourceGraphic"/> <!-- this contains the element that the filter is applied to -->
-                </feMerge>
-            </filter>
+            <rect id="node-container-mouse-area" width="100%" height="100%"></rect>
+            <g id="block-container" nvgtt-block-container></g>
+        </svg>  
 
 
-
-        </defs>
-
-        <rect id="node-container-mouse-area" width="100%" height="100%"></rect>
-        <g id="block-container" nvgtt-block-container>
-
-        </g>
-    </svg>
-
-
-        <script src="static/js/jquery-2.1.4.min.js"></script>
-        <script src="static/js/d3.v3.min.js"></script>
+        <!-- <script src="static/js/jquery-2.1.4.min.js"></script> -->
+        
 
         <script src="static/js/eventhandler.js"></script>
-        <script src="static/js/g-query.js"></script>
+        <!-- <script src="static/js/g-query.js"></script> -->
 
+        <!-- <script src="static/js/d3.v4.min.js"></script> -->
+        <script src="static/js/elasticsvg.js"></script>
+        <!-- <script src="static/js/routediagram.js"></script>   -->
+
+         <script src="static/js/d3.v3.min.js"></script>
         <script src="static/js/chart/nvgtt.js"></script>
-        <script src="static/js/chart/nvgtt-container.js"></script>
+        <script src="static/js/chart/nvgtt-container.js"></script> 
         <script src="static/js/chart/nvgtt-blocks.js"></script>
         <script src="static/js/chart/nvgtt-links.js"></script>
         <script src="static/js/chart/nvgtt-select.js"></script>
         <script src="static/js/chart/nvgtt-content.js"></script>
-        <script src="static/js/chart/nvgtt-project.js"></script>
+        <script src="static/js/chart/nvgtt-project.js"></script>  
         <script>
 
             // var mapDataStr = '{"nodes": [{"name": "Programming language", "x": 0, "bgcolor": "#b3b3ff", "fgcolor": "#2d002d", "localId": "1", "y": 0, "globalId": "1"}, {"name": "Computer", "x": 0, "bgcolor": "#b3b3ff", "fgcolor": "#2d002d", "localId": "2", "y": 0, "globalId": "2"}, {"name": "Memory", "x": 0, "bgcolor": "#b3b3ff", "fgcolor": "#2d002d", "localId": "3", "y": 0, "globalId": "3"}], "links": [{"sourceId": "2", "targetId": "1"}, {"sourceId": "3", "targetId": "1"}]}';
@@ -90,7 +46,12 @@
 
             NvgttChart.load(JSON.parse(mapDataStr));
 
+
             // var esvg = new ElasticSvg("svg-container", document.body);
+
+            // esvg.on("dblclick", function() {
+            //     esvg.fitScreen({top:10, bottom:10, left:10, right:10});
+            // });
 
             // d3.select("#svg-container")
             //     .append("rect")
@@ -98,11 +59,14 @@
             //     .attr("width", 100)
             //     .attr("fill", "blue");
 
-            // esvg.on("dblclick", function() {
-            //     esvg.fitScreen({top:10, bottom:10, left:10, right:10});
-            // });
+            
+            // loadRouteDiagram(JSON.parse(mapDataStr));
 
             // esvg.fitScreen({top:10, left:10, right:10, bottom:10});
+
+
+
+
 
         </script>
     </body>

@@ -125,6 +125,29 @@ NvgttChart.Links = new function() {
 			return [d.y, d.x]; 
 		});
 
+	function drawCircuitLine(link) {
+		var init_x = link.sourceBlock.x + link.sourceBlock.width;
+		var init_y = link.sourceBlock.y + link.sourceBlock.height/2;
+		var end_x = link.targetBlock.x;
+		var end_y = link.targetBlock.y + link.targetBlock.height/2;
+
+		var distLength = end_x - init_x;
+
+		var coordString = "Mx1,y1 Lx2,y2 Lx3,y3 Lx4,y4";
+
+		return coordString
+			.replace("x1", init_x)
+			.replace("y1", init_y)
+			.replace("x2", parseInt(init_x + distLength*0.25))
+			.replace("y2", init_y)
+			.replace("x3", init_x + distLength*0.75)
+			.replace("y3", end_y)
+			.replace("x4", end_x)
+			.replace("y4", end_y)
+
+		// return "M" + x1 + "," + y1 + " L" + x2 + "," + y2;
+	}
+
 
 	//Private classes
 	var NvgttLink = function(linkData) {
@@ -144,6 +167,14 @@ NvgttChart.Links = new function() {
 	}
 
 	//Dependent events
+	// function drawLinkPath(d) {
+	// 	d.source = d.sourceBlock;
+	// 	d.target = d.targetBlock;
+	// 	return "M" + d.source.y + "," + d.source.x
+	// 		+ "C" + (d.source.y + d.target.y) / 2 + "," + d.source.x
+	// 		+ " " + (d.source.y + d.target.y) / 2 + "," + d.target.x
+	// 		+ " " + d.target.y + "," + d.target.x;
+	// }
 
 	//Set the event in case the nodes move, refresh the links attached to it
 	NvgttChart.Blocks.on("move", function(d) {
@@ -155,7 +186,9 @@ NvgttChart.Links = new function() {
 
 			currLink.d3Select.select(".nvgtt-link-path")
 				//.transition().duration(1000)
-				.attr("d", drawLinkPath(currLink));	
+				.attr("d", drawCircuitLine(currLink));	
+
+			// console.log(drawCircuitLine(currLink));
 		}
 	});
 
