@@ -1,9 +1,9 @@
+<!DOCTYPE html>
+
 <html>
     <head>      
         <meta charset="utf8">
         <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-        <link rel="stylesheet" href="static/css/box-container.css"/>
-        <link rel="stylesheet" href="static/css/chart-style.css"/>
         <style>
             body {
                 background-color: #ddd;
@@ -12,63 +12,12 @@
         </style>  
     </head>
     <body>
-    
-         <svg class="svg-container" width="100%" height="100%">
-
-            <rect id="node-container-mouse-area" width="100%" height="100%"></rect>
-            <g id="block-container" nvgtt-block-container></g>
-        </svg>  
-
-
-        <!-- <script src="static/js/jquery-2.1.4.min.js"></script> -->
-        
-
-        <script src="static/js/eventhandler.js"></script>
-        <!-- <script src="static/js/g-query.js"></script> -->
-
-        <!-- <script src="static/js/d3.v4.min.js"></script> -->
-        <script src="static/js/elasticsvg.js"></script>
-        <!-- <script src="static/js/routediagram.js"></script>   -->
-
-         <script src="static/js/d3.v3.min.js"></script>
-        <script src="static/js/chart/nvgtt.js"></script>
-        <script src="static/js/chart/nvgtt-container.js"></script> 
-        <script src="static/js/chart/nvgtt-blocks.js"></script>
-        <script src="static/js/chart/nvgtt-links.js"></script>
-        <script src="static/js/chart/nvgtt-select.js"></script>
-        <script src="static/js/chart/nvgtt-content.js"></script>
-        <script src="static/js/chart/nvgtt-project.js"></script>  
-        <script>
-
-            // var mapDataStr = '{"nodes": [{"name": "Programming language", "x": 0, "bgcolor": "#b3b3ff", "fgcolor": "#2d002d", "localId": "1", "y": 0, "globalId": "1"}, {"name": "Computer", "x": 0, "bgcolor": "#b3b3ff", "fgcolor": "#2d002d", "localId": "2", "y": 0, "globalId": "2"}, {"name": "Memory", "x": 0, "bgcolor": "#b3b3ff", "fgcolor": "#2d002d", "localId": "3", "y": 0, "globalId": "3"}], "links": [{"sourceId": "2", "targetId": "1"}, {"sourceId": "3", "targetId": "1"}]}';
-
-            var mapDataStr = '{"nodes": [{"bgcolor": "#b3b3ff", "link": "https://en.wikipedia.org/wiki/Autoencoder", "name": "Autoencoder", "globalId": 1, "y": 0, "x": 0, "fgcolor": "#2d002d", "localId": 1}, {"bgcolor": "#b3b3ff", "link": "https://en.wikipedia.org/wiki/Long_short-term_memory", "name": "LSTM", "globalId": 8, "y": 0, "x": 0, "fgcolor": "#2d002d", "localId": 8}, {"bgcolor": "#b3b3ff", "link": "https://en.wikipedia.org/wiki/Logistic_regression", "name": "Logistic Regression", "globalId": 7, "y": 0, "x": 0, "fgcolor": "#2d002d", "localId": 7}, {"bgcolor": "#b3b3ff", "link": "https://en.wikipedia.org/wiki/Generative_adversarial_networks", "name": "Generative Adversarial Networks", "globalId": 4, "y": 0, "x": 0, "fgcolor": "#2d002d", "localId": 4}, {"bgcolor": "#b3b3ff", "link": "https://en.wikipedia.org/wiki/Computer_memory", "name": "Memory", "globalId": 10, "y": 0, "x": 0, "fgcolor": "#2d002d", "localId": 10}, {"bgcolor": "#b3b3ff", "link": "https://en.wikipedia.org/wiki/Linear_algebra", "name": "Linear Algebra", "globalId": 6, "y": 0, "x": 0, "fgcolor": "#2d002d", "localId": 6}, {"bgcolor": "#b3b3ff", "link": "https://en.wikipedia.org/wiki/Convolutional_neural_network", "name": "Convolutional Neural Networks", "globalId": 2, "y": 0, "x": 0, "fgcolor": "#2d002d", "localId": 2}, {"bgcolor": "#b3b3ff", "link": "https://en.wikipedia.org/wiki/Markov_model", "name": "Markov Models", "globalId": 9, "y": 0, "x": 0, "fgcolor": "#2d002d", "localId": 9}, {"bgcolor": "#b3b3ff", "link": "https://en.wikipedia.org/wiki/Hidden_Markov_model", "name": "Hidden Markov model", "globalId": 5, "y": 0, "x": 0, "fgcolor": "#2d002d", "localId": 5}, {"bgcolor": "#b3b3ff", "link": "https://en.wikipedia.org/wiki/Artificial_neural_network", "name": "Neural Networks", "globalId": 11, "y": 0, "x": 0, "fgcolor": "#2d002d", "localId": 11}, {"bgcolor": "#b3b3ff", "link": "https://en.wikipedia.org/wiki/Recurrent_neural_network", "name": "Recurrent Neural Networks", "globalId": 13, "y": 0, "x": 0, "fgcolor": "#2d002d", "localId": 13}, {"bgcolor": "#b3b3ff", "link": "https://medium.com/@dmonn/generating-faces-with-deep-convolutional-gans-c0dac44c8d49", "name": "DCGAN", "globalId": 3, "y": 0, "x": 0, "fgcolor": "#2d002d", "localId": 3}, {"bgcolor": "#b3b3ff", "link": "https://distill.pub/2016/augmented-rnns/", "name": "Neural Turing Machines", "globalId": 12, "y": 0, "x": 0, "fgcolor": "#2d002d", "localId": 12}], "links": [{"sourceId": 11, "targetId": 1}, {"sourceId": 11, "targetId": 2}, {"sourceId": 4, "targetId": 3}, {"sourceId": 2, "targetId": 3}, {"sourceId": 11, "targetId": 4}, {"sourceId": 9, "targetId": 5}, {"sourceId": 6, "targetId": 7}, {"sourceId": 13, "targetId": 8}, {"sourceId": 7, "targetId": 11}, {"sourceId": 13, "targetId": 12}, {"sourceId": 10, "targetId": 12}, {"sourceId": 11, "targetId": 13}]}';
-
-            NvgttChart.load(JSON.parse(mapDataStr));
-
-
-            // var esvg = new ElasticSvg("svg-container", document.body);
-
-            // esvg.on("dblclick", function() {
-            //     esvg.fitScreen({top:10, bottom:10, left:10, right:10});
-            // });
-
-            // d3.select("#svg-container")
-            //     .append("rect")
-            //     .attr("height", 100)
-            //     .attr("width", 100)
-            //     .attr("fill", "blue");
-
-            
-            // loadRouteDiagram(JSON.parse(mapDataStr));
-
-            // esvg.fitScreen({top:10, left:10, right:10, bottom:10});
-
-
-
-
-
-        </script>
+        <h1>Lucas Vieira de Oliveira</h1>
+        <h2>Presentation</h2>
+        <p>Hi, I'm Lucas</p>
+        <h2>Projects</h2>
+        <p>My projects</p>
+        <h2>Blogs</h2>
+        <p>My blogs</p>
     </body>
 </html>
-
