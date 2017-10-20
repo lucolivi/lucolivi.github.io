@@ -1,0 +1,3 @@
+Web app to analize some page or data and take off much darker stuff to save printer charge
+
+may use semantic segmentation of deep learning for it

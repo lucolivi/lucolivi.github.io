@@ -1,0 +1,4 @@
+BI
+integração com sistemas de gerenciamento
+iot
+computação visual

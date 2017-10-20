@@ -1,0 +1,1 @@
+app to auto organize ideas based on semantics and natural language processing

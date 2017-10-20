@@ -1,0 +1,7 @@
+Application to find similar products like clothes but cheaper than the current one. 
+
+If not found, users may recomend somewhere that sells the item and get the fee for it
+
+system for users anounce items
+
+Maybe show things closer to you

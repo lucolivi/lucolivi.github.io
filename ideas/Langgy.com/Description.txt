@@ -1,0 +1,10 @@
+General Description
+
+Langgy.com will be a web system from simplify Portuguese language based on synonyms and similar meanings. 
+
+Mine child books to get easy words and teory books for complex words
+
+Beeeem no future \/, da pra fazer o sinonimo agora
+In the future, it will be an interpreter of Portuguese language based on “similar reduction theory”
+
+Maybe we can data mining internet in search of most common words and less common words
