@@ -1,0 +1,21 @@
+html, body {
+    margin: 0;
+    font-family: "Calibri";
+}
+
+
+body {
+    background-color: #eee;
+    
+    
+}
+
+header {
+    background-color: #444;
+    height: 50px;
+    color: #fff;
+    font-size: 30px;
+    line-height: 50px;
+    padding-left: 10px;
+    
+}
